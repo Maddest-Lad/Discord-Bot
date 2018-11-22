@@ -6,16 +6,17 @@ public class MessageResponder extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContentDisplay();
 
+        //Convert Everything To Lowercase
+        message = message.toLowerCase();
+
         //D&D (Hard) Commands
         String dndMod = "!";
         if (message.startsWith(dndMod + "r")) {
-            AdvancedDiceRoller dice = new AdvancedDiceRoller();
-            event.getTextChannel().sendMessage(dice.Roll(message)).queue();
+            event.getTextChannel().sendMessage(AdvancedDiceRoller.Roll(message)).queue();
         }
 
         if (message.startsWith(dndMod + "d")) {
-            BasicDiceRoller dice = new BasicDiceRoller();
-            event.getTextChannel().sendMessage(dice.Roll(message)).queue();
+            event.getTextChannel().sendMessage(BasicDiceRoller.Roll(message)).queue();
         }
 
         if (message.startsWith(dndMod + "stats")) {
@@ -32,19 +33,19 @@ public class MessageResponder extends ListenerAdapter {
 
         //Game Group Commands
         String gameMod = "!g";
-        if (message.startsWith(gameMod + " Civ")) {
+        if (message.startsWith(gameMod + " civ")) {
             event.getTextChannel().sendMessage(Jack+" "+Sam+" "+Nathan+" "+Charlie+", Civilization Anyone?").queue();
         }
 
-        if (message.startsWith(gameMod + " Hoi4")) {
+        if (message.startsWith(gameMod + " hoi4")) {
             event.getTextChannel().sendMessage(Jack+" "+Sam+" "+Thomas+", Hearts of Iron 4 Anyone?").queue();
         }
 
-        if (message.startsWith(gameMod + " Stellaris")) {
+        if (message.startsWith(gameMod + " stellaris")) {
             event.getTextChannel().sendMessage(Jack+" "+Sam+" "+Nathan+", Stellaris Anyone?").queue();
         }
 
-        if (message.startsWith(gameMod + " Fallout")) {
+        if (message.startsWith(gameMod + " fallout")) {
             event.getTextChannel().sendMessage(Jack+" "+Sam+" Fallout 76 Anyone?").queue();
         }
 
@@ -56,19 +57,19 @@ public class MessageResponder extends ListenerAdapter {
 
         //Auto Mod Swear Prevention
         //TODO the Auto Part
-        if (message.startsWith("WTF")) {
+        if (message.contains("wtf")) {
             event.getTextChannel().sendMessage("Don't Use That Fucking Language Here").queue();
         }
 
-        if (message.startsWith("Fuck")) {
+        if (message.contains("fuck")) {
             event.getTextChannel().sendMessage("Don't Use That Fucking Language Here").queue();
         }
 
-        if (message.startsWith("Shit")) {
+        if (message.contains("shit")) {
             event.getTextChannel().sendMessage("Don't Use That Fucking Language Here").queue();
         }
 
-        if (message.startsWith("Damn")) {
+        if (message.contains("damn")) {
             event.getTextChannel().sendMessage("Don't Use That Fucking Language Here").queue();
         }
 
@@ -84,7 +85,7 @@ public class MessageResponder extends ListenerAdapter {
             event.getTextChannel().sendMessage(rip.Ruin(message)).queue();
         }
 
-        if (message.startsWith("rip")) {
+        if (message.contains("rip")) {
             event.getTextChannel().sendMessage("f").queue();
         }
     }
