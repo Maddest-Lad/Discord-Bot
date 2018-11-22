@@ -9,7 +9,7 @@ public class Connection {
         JDA discord = null;
 
         try {
-            discord = new JDABuilder(AccountType.BOT).setToken("Nope").buildBlocking();
+            discord = new JDABuilder(AccountType.BOT).setToken(Constants.botToken).buildBlocking();
         } catch (LoginException | InterruptedException e) {
             e.printStackTrace();
         }
