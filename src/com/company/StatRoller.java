@@ -1,13 +1,15 @@
 package com.company;
 
+import java.io.IOException;
+
 public class StatRoller {
 
-    public String CreateCharacter() {
+    public String CreateCharacter() throws IOException {
         return "```"+GenerateStats()+"```";
     }
 
     //Generates Stats, Adds Tag + Stats + Mod + Recommendation + Point-Diffs To Response
-    private String GenerateStats() {
+    private String GenerateStats() throws IOException {
         String response = "";
         int[] stats = new int[6];
         String[] Ability = {"Str: ","Int: ","Wis: ","Dex: ","Con: ","Chr: "};
@@ -33,7 +35,10 @@ public class StatRoller {
             sum += i;
         }
 
-        response += "You Could Be A Good " + classes[max]+"\n";
+        int temp = (int)(Math.random() * ((3 - 1) + 1)) + 1;
+
+        response += new NameGenerator("C:\\Users\\samha\\Desktop\\Dnd Bot\\src\\com\\company\\Names\\fantasy.txt").compose(temp);
+        response += " Could be a Good "+ classes[max]+"\n";
         if(sum-70!=Math.abs(sum-70)) {response += "You Have "+sum+" Points, "+(sum-70)+" Less Than Normal"+"\n";}
         else {response += "You Have "+sum+" Points, "+(sum-70)+" More Than Normal"+"\n";}
 
@@ -59,4 +64,6 @@ public class StatRoller {
 
         return first+second+third+fourth-min;
     }
+
+
 }

@@ -3,6 +3,8 @@ package com.company;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
+import java.io.IOException;
+
 public class MessageResponder extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
 
@@ -19,7 +21,7 @@ public class MessageResponder extends ListenerAdapter {
 
             //D&D (Hard) Commands
             String dndMod = "!";
-            if (message.startsWith(dndMod + "r")) {
+            /*if (message.startsWith(dndMod + "r")) {
                 event.getTextChannel().sendMessage(event.getAuthor().getName()+" Rolled a "+AdvancedDiceRoller.Roll(message)).queue();
             }
 
@@ -27,9 +29,18 @@ public class MessageResponder extends ListenerAdapter {
                 event.getTextChannel().sendMessage(event.getAuthor().getName()+" Rolled a "+BasicDiceRoller.Roll(message)).queue();
             }
 
+            if (message.startsWith(dndMod + "r")) {
+                DiceRoller
+            }
+            */
+
             if (message.startsWith(dndMod + "stats")) {
                 StatRoller stats = new StatRoller();
-                event.getTextChannel().sendMessage(stats.CreateCharacter()).queue();
+                try {
+                    event.getTextChannel().sendMessage(stats.CreateCharacter()).queue();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             //User Id's
