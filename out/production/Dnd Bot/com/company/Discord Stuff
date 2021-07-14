@@ -1,5 +1,0 @@
-Commands:
-!s roll <number of rolls>,<max of die>
-example: !s roll 5,6
-!s stats <number to generate>
-example : !s stats 5
